@@ -61,6 +61,12 @@
         position: relative;
         color: #fff;
         }
+        .item.on{
+            background: rgba(0,0,0,0.5);
+            border-top:1px solid #ccc;
+            border-bottom:1px solid #ccc;
+            font-size: 35px;
+        }
         .item::before{
         content:'-';
         position: absolute;
@@ -88,39 +94,44 @@
             clear: both;
         }
         .group li{
-            border-bottom:1px #fff solid;
+            border:1px #fff solid;
             margin: 5px 0;
+            background: rgba(0,0,0,0.5);
         }
         .group li:nth-of-type(even){
             margin-right: 10px;
+            border-left: 0;
+        }
+        .group li:nth-of-type(odd){
+
+            border-right: 0;
         }
         .groupli {
-        width: 200px;
-        height: 50px;
-        float: left;
-        list-style: none;
-        line-height: 50px;
-        text-align: center;
-        font-size: 30px;
-        color: #fff;
-        /*border:1px #fff solid;*/
+            width: 200px;
+            height: 50px;
+            float: left;
+            list-style: none;
+            line-height: 50px;
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
         }
         .menus {
-        position: fixed;
-        z-index: 100;
-        display: none;
+            position: fixed;
+            z-index: 100;
+            display: none;
         }
         .menus a {
-        width: 70px;
-        height: 40px;
-        text-decoration: none;
-        text-align: center;
-        line-height: 40px;
-        background: #999;
-        display: block;
-        padding: 5px;
-        color: #333;
-        font-weight: bold;
+            width: 70px;
+            height: 40px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            background: #999;
+            display: block;
+            padding: 5px;
+            color: #333;
+            font-weight: bold;
         }
         .menus a:hover {
             background: #ccc;

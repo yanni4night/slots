@@ -50,6 +50,8 @@ function to(name, done) {
     var target = $('[data-name="' + name + '"]').last();
     var height = +target.attr('data-index') * 100;
 
+    target.siblings().removeClass('on').end().addClass('on');
+
     new Promise(function (resolve) {
         $('.container').css('top', 0).animate({
             top: -height
