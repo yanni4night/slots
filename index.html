@@ -16,6 +16,11 @@
         width: 100%;
         height: 100%;
         }
+        body{
+            background: url("bg.jpg") top center no-repeat;
+            background-size: cover;
+            position: relative;
+        }
         .list {
         background-color: #eee;
         width: 200px;
@@ -23,7 +28,7 @@
         overflow: hidden;
         float: left;
         position: relative;
-        background: -webkit-linear-gradient(top,rgba(255,255,255,0.3),#fff,rgba(255,255,255,0.3));
+        background: -webkit-linear-gradient(top,rgba(255,255,255,0),rgba(255,255,255,0.2),rgba(255,255,255,0));
         }
         
         .xcon {
@@ -54,6 +59,7 @@
         text-align: center;
         font-size: 25px;
         position: relative;
+        color: #fff;
         }
         .item::before{
         content:'-';
@@ -68,10 +74,25 @@
         top: 50px;
         }
         .group {
-        width: -webkit-calc(100% - 200px);
-        display: block;
-        list-style: none;
-        margin: 0 auto;
+            width: 850px;
+            display: block;
+            list-style: none;
+            margin-left: 300px;
+            margin-top: 100px;
+        }
+        .group::after{
+            content: '';
+            display: block;
+            font-size: 0;
+            height: 0;
+            clear: both;
+        }
+        .group li{
+            border-bottom:1px #fff solid;
+            margin: 5px 0;
+        }
+        .group li:nth-of-type(even){
+            margin-right: 10px;
         }
         .groupli {
         width: 200px;
@@ -82,6 +103,7 @@
         text-align: center;
         font-size: 30px;
         color: #fff;
+        /*border:1px #fff solid;*/
         }
         .menus {
         position: fixed;
@@ -104,32 +126,37 @@
             background: #ccc;
         }
         .banner{
-            width: -webkit-calc(100% - 200px);
-            height: 200px;
+            width: 200px;
+            height: 100%;
             position: relative;
             margin-left: 200px;
-            font-size: 70px;
+            font-size: 50px;
             color:#fff;
-            line-height: 200px;
+            line-height: 1;
             text-align: center;
             background: #666;
         }
         .dialog {
-            width: 400px;
-            height: 200px;
+            width: 500px;
+            height: 400px;
             position: absolute;
             z-index: 50;
             left: 50%;
             top:50%;
-            margin-top: -150px;
-            margin-left: -200px;
-            background: #fff;
+            margin-top: -200px;
+            margin-left: -250px;
+            background: rgba(255,255,255,0.8) url("group.png") center center no-repeat;
             border-radius: 10px;
             display: none;
+            background-size: contain;
+            border-top-left-radius: 100px;
+            border-bottom-right-radius: 100px;
         }
         .dialog h1 {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 140px;
+            color: #333;
+            font-size: 70px;
         }
         .dialog .buttons {
             margin-top: 40px;
@@ -139,25 +166,44 @@
             display: inline-block;
             border-radius: 5px;
             text-align: center;
-            width: 60px;
-            height: 40px;
-            line-height: 40px;
+            width: 100px;
+            height: 60px;
+            line-height: 60px;
             text-decoration: none;
-            background: #333;
-            color:#fff;
+            background: url(btn.png) center center no-repeat;
+            color:#333;
+            background-size: contain;
         }
         .dialog .buttons a:hover{
-            background: #666
+            background: url(btn-h.png) center center no-repeat;
+            background-size: contain;
+        }
+        .hat{
+            width: 170px;
+            position: absolute;
+            left: -30px;
+            top: -30px;
+            transform: rotate(-30deg);
+        }
+        .circle {
+            width: 300px;
+            position: absolute;
+            right: -70px;
+            bottom:-70px;
+
+            transform: rotate(-35deg);
         }
         </style>
     </head>
     <body>
+        <img src="circle.png" class="circle"/>
         <div class="list">
+        <img src="hat.png" class="hat">
             <div class="xcon">
                 <div class="container"></div>
             </div>
         </div>
-        <div class="banner">游戏分组</div>
+        <!-- <div class="banner">游戏分组</div> -->
     <ul class="group"></ul>
     <div class="menus">
         <a href="#" class="do-group">执行分组</a>

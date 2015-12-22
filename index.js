@@ -31,7 +31,7 @@ var poss = ['铁马', '五爷', '六婊', '倪倪', '小曼', '夹夹', '玛丽'
     '小熊', '静宁', '杨老师', '大师兄'
 ];
 
-var names = pm.concat(po).concat(poss);
+var names = shuffle(pm.concat(po).concat(poss));
 
 var index = 0;
 var sb = function (name) {
