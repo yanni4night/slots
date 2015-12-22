@@ -80,13 +80,20 @@ function to(name, done) {
 
 }
 
-/*var slots = new Slots({
-    candidate: [names.map(function (name) {
-        return {
-            value: name
-        };
-    })]
-});*/
+function toPrize(name) {
+    var target = $('[data-name="' + name + '"]').last();
+    var height = +target.attr('data-index') * 100;
+
+    new Promise(function (resolve) {
+        $('.container').css('top', 0).animate({
+            top: -height
+        }, 1500, 'easeOutElastic', function () {
+            resolve();
+        });
+    }).then(function () {
+        $('.dialog').find('h1').text(name).end().show();
+    });
+}
 
 var total = 0;
 var groupNames;
@@ -106,8 +113,8 @@ function select() {
     });
 }
 
-//select();
 
+var prizeNames;
 
 $(document).on('contextmenu', function (e) {
     $('.menus').css({
@@ -126,4 +133,19 @@ $(document).on('contextmenu', function (e) {
     } else {
         console.log('forbidden');
     }
+}).on('click', '.do-prize', function () {
+    if (!total) {
+        if (!prizeNames) {
+            prizeNames = shuffle(names);
+        }
+        var name = prizeNames[0] || '已经没有人了';
+        toPrize(name, function () {});
+    } else {
+        console.log('forbidden');
+    }
+}).on('click', '.dialog .buttons .get', function () {
+    prizeNames.shift();
+    $('.dialog').hide();
+}).on('click', '.dialog .buttons .giveup', function () {
+    $('.dialog').hide();
 });
