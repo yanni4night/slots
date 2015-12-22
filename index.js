@@ -118,15 +118,8 @@ function select() {
 
 var prizeNames;
 
-$(document).on('contextmenu', function (e) {
-    $('.menus').css({
-        left: e.pageX,
-        top: e.pageY
-    }).show();
-    return false;
-}).on('click', function () {
-    $('.menus').hide();
-}).on('click', '.do-group', function () {
+$(document).on('click', '.do-group', function (e) {
+    e.preventDefault();
     if (!total) {
         total = 20;
         groupNames = null;
@@ -135,7 +128,8 @@ $(document).on('contextmenu', function (e) {
     } else {
         console.log('forbidden');
     }
-}).on('click', '.do-prize', function () {
+}).on('click', '.do-prize', function (e) {
+    e.preventDefault();
     if (!total) {
         if (!prizeNames) {
             prizeNames = shuffle(names);
