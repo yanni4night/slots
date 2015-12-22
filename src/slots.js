@@ -31,12 +31,15 @@
 
             return candidate.map(function (sequence) {
                 var target;
-
+                var index;
                 do {
-                    target = sequence[Math.random() * sequence.length | 0];
-                } while (target.value in tagged);
+                    index = Math.random() * sequence.length | 0;
+                    target = sequence[index];
+                } while (!target || target.value in tagged);
 
                 tagged[target.value] = true;
+
+                sequence.splice(index, 1);
 
                 return target.value;
             });
