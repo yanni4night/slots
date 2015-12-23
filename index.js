@@ -167,7 +167,7 @@ $(document).on('click', '.do-group', function (e) {
         if (!prizeNames) {
             prizeNames = shuffle(names);
         }
-        pickedName = shuffle(prizeNames, 1)[0] || '已经没有人了';
+        pickedName = shuffle(prizeNames, 1)[0] || '奖品发完啦';
         toPrize(pickedName, function () {});
     } else {
         console.log('forbidden');
