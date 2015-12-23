@@ -41,7 +41,7 @@ var sb = function (name) {
 
 var $names = [];
 
-for (var i = 0; i < 1; ++i) {
+for (var i = 0; i < 2; ++i) {
     $names = $names.concat(names.map(sb));
 }
 
@@ -100,15 +100,42 @@ function toPrize(name) {
 
 var total = 0;
 var groupNames;
+var preName;
 
 function select() {
     if (!groupNames) {
         var pmSize = pm.length;
-        groupNames = pm.slice().concat(shuffle(poss, 20 - pmSize));
-        groupNames = shuffle(groupNames, groupNames.length);
+        groupNames = [];
+        var bpPm = pm.slice();
+        var bpPo = shuffle(poss, 20 - pmSize);
+        for (var i = 0; i < Math.max(bpPm.length, bpPo.length); ++i) {
+            var tmp = [];
+            if (bpPm[i]) {
+                tmp.push(bpPm[i]);
+            }
+
+            if (bpPo[i]) {
+                tmp.push(bpPo[i]);
+            }
+            groupNames = groupNames.concat(shuffle(tmp));
+        }
+
+        var m = [];
+        
+        for (i = 0; i < groupNames.length; i += 2) {
+            m.push([groupNames[i], groupNames[i + 1]]);
+        }
+
+        m = shuffle(m);
+
+        groupNames = m.reduce(function (p, n) {
+            return p.concat(n);
+        });
+
     }
     total--;
     var name = groupNames.shift();
+    preName = name;
     to(name, function () {
         if (total) {
             select();
@@ -124,6 +151,7 @@ $(document).on('click', '.do-group', function (e) {
     if (!total) {
         total = 20;
         groupNames = null;
+        preName = null;
         $('.group').empty();
         select();
     } else {
