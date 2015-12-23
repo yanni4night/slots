@@ -24,14 +24,15 @@ function shuffle(arr, size) {
     return ret;
 }
 
-var pm = ['佳薇', '刘媛', '胡蓉', '第一帅', '刘赫', '张鹤', '吴朦'];
+var spm = ['胡蓉', '第一帅'];
+var pm = ['佳薇', '刘媛', '刘赫', '张鹤', '吴朦'];
 var po = ['阿哥', '铁牛'];
 var poss = ['铁马', '五爷', '六婊', '倪倪', '小曼', '夹夹', '玛丽', '小兰',
     '闻静', '小贝', '菜菜', '晓丹', '峰姐', '海洋', '铁柱', '小海', '底迪', '赵祎', '庆庆', '小花', '李鹏', '陈梦', '雨探', '小饱', '阿毛', '蛋蛋',
     '小熊', '静宁', '杨老师', '大师兄'
 ];
 
-var names = shuffle(pm.concat(po).concat(poss));
+var names = shuffle(spm.concat(pm).concat(po).concat(poss));
 
 var index = 0;
 var sb = function (name) {
