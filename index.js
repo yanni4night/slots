@@ -87,6 +87,8 @@ function toPrize(name) {
     var target = $('[data-name="' + name + '"]').last();
     var height = +target.attr('data-index') * 100;
 
+    target.siblings().removeClass('on').end().addClass('on');
+
     new Promise(function (resolve) {
         $('.container').css('top', 0).animate({
             top: -height
@@ -121,7 +123,7 @@ function select() {
         }
 
         var m = [];
-        
+
         for (i = 0; i < groupNames.length; i += 2) {
             m.push([groupNames[i], groupNames[i + 1]]);
         }
@@ -146,6 +148,8 @@ function select() {
 
 var prizeNames;
 
+var pickedName;
+
 $(document).on('click', '.do-group', function (e) {
     e.preventDefault();
     if (!total) {
@@ -163,13 +167,15 @@ $(document).on('click', '.do-group', function (e) {
         if (!prizeNames) {
             prizeNames = shuffle(names);
         }
-        var name = prizeNames[0] || '已经没有人了';
-        toPrize(name, function () {});
+        pickedName = shuffle(prizeNames, 1)[0] || '已经没有人了';
+        toPrize(pickedName, function () {});
     } else {
         console.log('forbidden');
     }
 }).on('click', '.dialog .buttons .get', function () {
-    prizeNames.shift();
+    prizeNames = prizeNames.filter(function (item) {
+        return item !== pickedName;
+    });
     $('.dialog').hide();
 }).on('click', '.dialog .buttons .giveup', function () {
     $('.dialog').hide();
